@@ -5,7 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/api/user_info', methods=['GET'])
+@app.route('/api', methods=['GET'])
 def user_info():
     slack_name = request.args.get('slack_name')
     track = request.args.get('track')
@@ -16,7 +16,7 @@ def user_info():
     current_time = datetime.utcnow()
     day_of_week = current_time.strftime('%A')
 
-    user_info = {
+    return jsonify({
         'slack_name': slack_name,
         'current_day': day_of_week,
         'utc_time': current_time,
@@ -24,9 +24,8 @@ def user_info():
         'github_file_url': 'https://github.com/ShogoMark/Zuri_intern/blob/main/app.py',
         'github_repo_url': 'https://github.com/ShogoMark/Zuri_intern',
         'status_code': 200
-    }
+    })
 
-    return jsonify(user_info)
 
 if __name__ == '__main__':
     app.run(debug=True)
