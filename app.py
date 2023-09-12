@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -20,4 +21,12 @@ def user_info():
         'current_day': day_of_week,
         'utc_time': current_time,
         'track': track,
-        'github_file_url': 
+        'github_file_url': 'https://github.com/ShogoMark/Zuri_intern/blob/main/app.py',
+        'github_repo_url': 'https://github.com/ShogoMark/Zuri_intern',
+        'status_code': 200
+    }
+
+    return jsonify(user_info)
+
+if __name__ == '__main__':
+    app.run(debug=True)
