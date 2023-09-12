@@ -14,12 +14,13 @@ def user_info():
         return jsonify({'error': 'Both slack_name and track are required'})
 
     current_time = datetime.utcnow()
+    format_time = current_time.strftime('%Y-%m-%dT%H:%M:%SZ')
     day_of_week = current_time.strftime('%A')
 
     return jsonify({
         'slack_name': slack_name,
         'current_day': day_of_week,
-        'utc_time': current_time,
+        'utc_time': format_time,
         'track': track,
         'github_file_url': 'https://github.com/ShogoMark/Zuri_intern/blob/main/app.py',
         'github_repo_url': 'https://github.com/ShogoMark/Zuri_intern',
